@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100e12">
+  <meta name="description" content="Un juego de deducción para compartir: recibí tu rol, debatí y encontrá al impostor.">
+  <title>The Impostor · Juego de deducción</title>
+  <link rel="icon" href="./imagenes/logofijo.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./futbolH.js"></script>
+  <script defer src="./lugares.js"></script>
+  <script defer src="./profesiones.js"></script>
+  <script defer src="./futbolA.js"></script>
+  <script defer src="./paises.js"></script>
+  <script defer src="./clubes.js"></script>
+  <script defer src="./clashroyale.js"></script>
+  <script defer src="./game-core.js"></script>
+  <script defer src="./theimposter.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">◆</span>
+        <span>THE IMPOSTOR</span>
+      </div>
+      <span class="header-caption">UN JUEGO DE DEDUCCIÓN</span>
+    </header>
+
+    <main id="contenido">
+      <section id="inicio" class="screen hero" aria-labelledby="titulo-inicio">
+        <div class="hero-copy">
+          <p class="eyebrow">OBSERVÁ · DUDÁ · DESCUBRÍ</p>
+          <h1 id="titulo-inicio" tabindex="-1">Hay alguien que <em>no sabe la palabra.</em></h1>
+          <p class="hero-lead">Todos reciben la misma palabra secreta, salvo uno o varios impostores. Hagan preguntas, escuchen las respuestas y descubran quién está improvisando.</p>
+          <button type="button" id="boton-comenzar" class="button button-primary">Crear una partida <span aria-hidden="true">→</span></button>
+          <p class="hero-note">De 3 a 20 personas · Un solo teléfono · Sin registro</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-art-frame"><img src="./imagenes/logofijo.jpg" alt=""></div>
+          <span class="hero-art-label">¿EN QUIÉN CONFIÁS?</span>
+        </div>
+      </section>
+
+      <section id="preparacion-juego" class="screen screen-narrow" aria-labelledby="titulo-preparacion" hidden>
+        <div class="section-heading">
+          <p class="eyebrow">01 / PREPARACIÓN</p>
+          <h1 id="titulo-preparacion" tabindex="-1">Armá la partida</h1>
+          <p>Elegí la cantidad de personas y una categoría. Después, pasen el teléfono para recibir los roles.</p>
+        </div>
+        <form id="config-form" class="surface" novalidate>
+          <div class="settings-grid">
+            <div class="field">
+              <label for="input-jugadores">Jugadores</label>
+              <input type="number" id="input-jugadores" min="3" max="20" step="1" inputmode="numeric" value="4" required>
+              <small>Entre 3 y 20 personas</small>
+            </div>
+            <div class="field">
+              <label for="input-impostores">Impostores</label>
+              <input type="number" id="input-impostores" min="1" max="2" step="1" inputmode="numeric" value="1" required aria-describedby="ayuda-impostores">
+              <small id="ayuda-impostores">Con 4 jugadores, hasta 2 impostores</small>
+            </div>
+            <div class="field">
+              <label for="duracion-debate">Tiempo de debate</label>
+              <select id="duracion-debate">
+                <option value="0">Sin límite</option>
+                <option value="120">2 minutos</option>
+                <option value="180" selected>3 minutos</option>
+                <option value="300">5 minutos</option>
+              </select>
+              <small>El reloj se puede pausar</small>
+            </div>
+          </div>
+
+          <fieldset class="category-fieldset">
+            <legend>Categoría</legend>
+            <div class="category-grid">
+              <div class="category-option">
+                <input type="radio" name="categoria" id="Paises" value="Paises" checked>
+                <label for="Paises" class="category-card">
+                  <img src="./imagenes/paises.jpg" alt="" loading="lazy">
+                  <span class="category-name">Países</span>
+                </label>
+              </div>
+              <div class="category-option">
+                <input type="radio" name="categoria" id="Futbolistashistoricos" value="Futbolistashistoricos">
+                <label for="Futbolistashistoricos" class="category-card">
+                  <img src="./imagenes/futbolistashistoricos.jpg" alt="" loading="lazy">
+                  <span class="category-name">Leyendas del fútbol</span>
+                </label>
+              </div>
+              <div class="category-option">
+                <input type="radio" name="categoria" id="Futbolistasactuales" value="Futbolistasactuales">
+                <label for="Futbolistasactuales" class="category-card">
+                  <img src="./imagenes/futbolistasactuales.avif" alt="" loading="lazy">
+                  <span class="category-name">Estrellas del fútbol</span>
+                </label>
+              </div>
+              <div class="category-option">
+                <input type="radio" name="categoria" id="Clubes" value="Clubes">
+                <label for="Clubes" class="category-card">
+                  <img src="./imagenes/clubes.jpg" alt="" loading="lazy">
+                  <span class="category-name">Clubes</span>
+                </label>
+              </div>
+              <div class="category-option">
+                <input type="radio" name="categoria" id="Lugares" value="Lugares">
+                <label for="Lugares" class="category-card">
+                  <img src="./imagenes/lugares.jpg" alt="" loading="lazy">
+                  <span class="category-name">Lugares</span>
+                </label>
+              </div>
+              <div class="category-option">
+                <input type="radio" name="categoria" id="Profesiones" value="Profesiones">
+                <label for="Profesiones" class="category-card">
+                  <img src="./imagenes/profesiones.jpg" alt="" loading="lazy">
+                  <span class="category-name">Profesiones</span>
+                </label>
+              </div>
+              <div class="category-option">
+                <input type="radio" name="categoria" id="Clashroyale" value="Clashroyale">
+                <label for="Clashroyale" class="category-card">
+                  <img src="./imagenes/clash-royale.jpg" alt="" loading="lazy">
+                  <span class="category-name">Clash Royale</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <p id="error-config" class="form-error" role="alert" hidden></p>
+          <div class="form-actions">
+            <button type="button" id="boton-inicio-config" class="button button-quiet">Volver al inicio</button>
+            <button type="submit" class="button button-primary">Repartir roles <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </section>
+
+      <section id="juego" class="screen screen-centered" aria-labelledby="estado-rol" hidden>
+        <p class="eyebrow">02 / ROLES SECRETOS</p>
+        <p class="step-counter" id="contador-jugadores"></p>
+        <h1 id="estado-rol" tabindex="-1" aria-live="polite">Preparando roles</h1>
+        <p class="section-note" id="instruccion-rol"></p>
+        <div class="role-card" aria-hidden="true">
+          <div class="role-card-inner" id="card-inner">
+            <div class="role-card-front">
+              <span class="card-kicker">TARJETA SECRETA</span>
+              <strong id="datos-jugadores-front"></strong>
+              <span class="card-emblem">◆</span>
+            </div>
+            <div class="role-card-back">
+              <span class="card-kicker">TU ROL</span>
+              <strong id="datos-jugadores-back"></strong>
+              <span class="card-emblem">◆</span>
+            </div>
+          </div>
+        </div>
+        <p id="rol-accesible" class="sr-only" aria-live="polite"></p>
+        <button type="button" id="accion-rol" class="button button-primary button-wide"></button>
+        <button type="button" id="cancelar-partida" class="text-button">Cancelar partida</button>
+      </section>
+
+      <section id="debate" class="screen screen-centered" aria-labelledby="titulo-debate" hidden>
+        <p class="eyebrow">03 / DEBATE</p>
+        <h1 id="titulo-debate" tabindex="-1">Ahora, hablen.</h1>
+        <p class="section-note">Describan la palabra sin decirla. El impostor tendrá que seguirles el ritmo.</p>
+        <div class="debate-card surface">
+          <span class="info-label">EMPIEZA</span>
+          <strong id="jugador-inicial"></strong>
+          <p id="nombre-categoria" class="muted"></p>
+          <div id="panel-reloj" class="timer-panel" hidden>
+            <span class="info-label">TIEMPO RESTANTE</span>
+            <output id="reloj" aria-label="Tiempo restante">03:00</output>
+            <div class="timer-actions">
+              <button type="button" id="boton-reloj" class="button button-secondary">Iniciar reloj</button>
+              <button type="button" id="reiniciar-reloj" class="text-button">Reiniciar</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" id="ir-a-votar" class="button button-primary button-wide">Empezar votación <span aria-hidden="true">→</span></button>
+        <button type="button" id="cancelar-debate" class="text-button">Cancelar partida</button>
+      </section>
+
+      <section id="votacion" class="screen screen-centered" aria-labelledby="titulo-votacion" hidden>
+        <p class="eyebrow">04 / VOTACIÓN</p>
+        <p class="step-counter" id="contador-votos"></p>
+        <h1 id="titulo-votacion" tabindex="-1">¿Quién es el impostor?</h1>
+        <p class="section-note">Cada persona vota una vez, en privado. Pasá el teléfono después de registrar tu voto.</p>
+        <div class="vote-card surface">
+          <label for="voto-jugador" id="etiqueta-voto"></label>
+          <select id="voto-jugador"></select>
+          <p id="error-votacion" class="form-error" role="alert" hidden></p>
+          <button type="button" id="registrar-voto" class="button button-primary button-wide">Registrar voto</button>
+        </div>
+        <button type="button" id="cancelar-votacion" class="text-button">Cancelar partida</button>
+      </section>
+
+      <section id="final-juego" class="screen screen-centered" aria-labelledby="titulo-final" hidden>
+        <p class="eyebrow">05 / RESULTADO</p>
+        <h1 id="titulo-final" tabindex="-1">Así votaron</h1>
+        <p id="mas-votado" class="section-note"></p>
+        <div class="results-card surface">
+          <h2>Recuento</h2>
+          <ol id="conteo-votos"></ol>
+          <button type="button" id="descubrir-impostor" class="button button-primary button-wide">Revelar impostor</button>
+          <div id="revelacion" class="reveal-result" role="status" tabindex="-1" hidden>
+            <p class="info-label">LA VERDAD</p>
+            <h2 id="resultado-titulo"></h2>
+            <p id="resultado-detalle"></p>
+          </div>
+        </div>
+        <div class="results-actions">
+          <button type="button" id="boton-volver" class="button button-secondary" hidden>Nueva ronda</button>
+          <button type="button" id="boton-configurar" class="button button-quiet" hidden>Cambiar configuración</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">THE IMPOSTOR <span aria-hidden="true">·</span> Cara a cara es más divertido.</footer>
+  </div>
+</body>
+</html>
