@@ -10,4 +10,4 @@ Juego de deducción local para **3 a 20 personas**. Todos salvo los impostores r
 4. Cada jugador vota una vez y no puede votarse a sí mismo. El recuento aparece solo cuando todos terminaron.
 5. Revelen la palabra y los impostores. Si hay un único jugador más votado y es impostor, el grupo acertó. Un empate no se considera acierto.
 
-**Nueva ronda** conserva la configuración. Las palabras de cada categoría no se repiten hasta agotar la lista; al comenzar una nueva vuelta se evita repetir la palabra de la ronda anterior.
+**Nueva ronda** conserva la configuración o cambien de categoría de hacer falta. Si conservan la configuración, las palabras de cada categoría no se repiten hasta agotar la lista; al comenzar una nueva vuelta se evita repetir la palabra de la ronda anterior.
